@@ -83,8 +83,15 @@ inoremap jk <esc>
 " temporarily disable c-[
 inoremap <c-[> <nop>
 
+" Switch the value of these characters since the more useful one is harder
+" to reach
+nnoremap ` '
+nnoremap ' `
+
 " Re-enable <esc> instead of jk when jk must be used
 nnoremap <leader>k :iunmap <c-v><c-[><cr>:iunmap jk<cr>
+
+nnoremap <leader>; mqA;<c-[>`q
 
 " Vimscript file settings {{{
 augroup filetype_vim
