@@ -55,13 +55,11 @@ noremap <f5> :!gen_tags
 source ~/vim_util.vim
 " remap @w to jump between source code and header
 " and @e to split
-let @w=":call headerjump()"
-let @e=":call headersplit()"
-
-:iabbrev str std::string
+let @w=":call HeaderJump()"
+let @e=":call HeaderSplit()"
 
 " macro for quickly switching to ~/.vimrc file
-:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 " macro to quickly source ~/.vimrc file so you don't need
 " to restart vim after adding a macro (such as with <leader>ev macro)
@@ -80,9 +78,6 @@ nnoremap <leader>{ cc{<cr>}<esc>pkva{=
 " quick exit out of insert mode
 inoremap jk <esc>
 
-" temporarily disable c-[
-inoremap <c-[> <nop>
-
 " Switch the value of these characters since the more useful one is harder
 " to reach
 nnoremap ` '
@@ -96,7 +91,7 @@ nnoremap <leader>; mqA;<c-[>`q
 " Vimscript file settings {{{
 augroup filetype_vim
 	autocmd!
-
+;
 	autocmd FileType vim setlocal foldmethod=marker
 	autocmd FileType vim nnoremap <buffer> <leader>c I" <esc>
 augroup END
