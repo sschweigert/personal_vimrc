@@ -106,3 +106,5 @@ augroup filetype_cpp
 	autocmd FileType cpp nnoremap <buffer> <leader>c I// <esc>
 augroup END
 " }}}
+
+let g:sneak#s_next = 1
