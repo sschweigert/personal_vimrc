@@ -55,8 +55,8 @@ noremap <f5> :!gen_tags
 source ~/vim_util.vim
 " remap @w to jump between source code and header
 " and @e to split
-let @w=":call headerjump()"
-let @e=":call headersplit()"
+let @w=":call HeaderJump()"
+let @e=":call HeaderSplit()"
 
 :iabbrev str std::string
 
@@ -79,6 +79,7 @@ nnoremap <leader>{ cc{<cr>}<esc>pkva{=
 
 " quick exit out of insert mode
 inoremap jk <esc>
+inoremap JK <esc>
 
 " temporarily disable c-[
 inoremap <c-[> <nop>
