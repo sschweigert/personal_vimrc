@@ -103,8 +103,38 @@ augroup filetype_cpp
 
 	" Macros for comments
 	autocmd FileType cpp vnoremap <buffer> <leader>c :s!\(^\s*\)!\1// !<cr>:noh<cr>
-	autocmd FileType cpp nnoremap <buffer> <leader>c I// <esc>
+	" autocmd FileType cpp nnoremap <buffer> <leader>c I// <esc>
 augroup END
 " }}}
 
+nnoremap <leader>c :clist<cr>
+
 let g:sneak#s_next = 1
+
+
+"This will match all forward slashes that are not comments:
+"let @k='\(\(\/\|\*\)\@<!\/\(\/\|\*\)\@!\)'
+"
+"This will match - and > that aren't pointer derefernce:
+"let @l='\(->\@!\|<\|-\@<!>\)'
+"
+"let @p='\(+\@<!++\@!\)'
+"
+"This will match all characters that should be spaced
+"let @c='\(==\|!=\|+=\|-=\|*=\|>>\|<<\|>=\|<=\|=\|p\|*\|k\|l\)'
+"
+"let @g='gg=G'
+"
+"let @h='%s/\(\S\+\)\@<={/\r\0/eg'
+"
+"his matches all spaced characters that do not occur in an #include
+"```
+"let @s='\(\(#include.\+\)\@<!c\)'
+"let @t='/p'
+"let @a='%s/\w\@<=s/ \0/eg'
+"let @b='%s/s\w\@=/\0 /eg'
+"let @f=':a | b | h'
+"
+"let @q=":w
+":! ca
+":q
