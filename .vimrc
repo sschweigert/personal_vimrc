@@ -75,6 +75,9 @@ vnoremap <leader>" di""<esc>p
 vnoremap <leader>{ c{<cr>}<esc>pkva{=
 nnoremap <leader>{ cc{<cr>}<esc>pkva{=
 
+" Add m member variable prefix on selected word
+nnoremap <leader>m viwv`<vUim<esc>
+
 " quick exit out of insert mode
 inoremap jk <esc>
 
