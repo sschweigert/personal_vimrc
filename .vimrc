@@ -37,7 +37,7 @@ noremap <f4> :set hlsearch! hlsearch?<cr>
 set tags=~/.vim/tags
 
 " remap @q to close and compile
-nnoremap <leader>q :wa:make
+nnoremap <leader>q :wa:make<cr>
 
 set makeprg=ca
 "set makeprg=./make_script
