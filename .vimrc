@@ -37,7 +37,8 @@ noremap <f4> :set hlsearch! hlsearch?<cr>
 set tags=~/.vim/tags
 
 " remap @q to close and compile
-let @q=":wa:make"
+"let @q=":wa:make"
+nnoremap <leader>q :wa<cr>:make<cr><cr><cr>
 
 set makeprg=ca
 "set makeprg=./make_script
@@ -47,7 +48,7 @@ execute pathogen#infect()
 execute pathogen#helptags()
 
 " ignores doxygen files when using command-t
-set wildignore=doxygen*,*/build/*
+set wildignore=doxygen*,*/build/*,*deprecated*
 
 noremap <f5> :!gen_tags
 "
@@ -58,10 +59,8 @@ source ~/vim_util.vim
 let @w=":call HeaderJump()"
 let @e=":call HeaderSplit()"
 
-:iabbrev str std::string
-
 " macro for quickly switching to ~/.vimrc file
-:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 " macro to quickly source ~/.vimrc file so you don't need
 " to restart vim after adding a macro (such as with <leader>ev macro)
@@ -77,12 +76,15 @@ vnoremap <leader>" di""<esc>p
 vnoremap <leader>{ c{<cr>}<esc>pkva{=
 nnoremap <leader>{ cc{<cr>}<esc>pkva{=
 
+" Change variables to member variable formatting
+" ie. robotSide -> mRobotSide
+nnoremap <leader>m viwovvUim<esc>
+
 " quick exit out of insert mode
 inoremap jk <esc>
+inoremap jK <esc>
+inoremap Jk <esc>
 inoremap JK <esc>
-
-" temporarily disable c-[
-inoremap <c-[> <nop>
 
 " Switch the value of these characters since the more useful one is harder
 " to reach
@@ -90,16 +92,28 @@ nnoremap ` '
 nnoremap ' `
 
 " Re-enable <esc> instead of jk when jk must be used
-nnoremap <leader>k :iunmap <c-v><c-[><cr>:iunmap jk<cr>
+nnoremap <leader>y :iunmap jk<cr>
 
 nnoremap <leader>; mqA;<c-[>`q
+
+nnoremap <leader>c :clist<cr>
+
+nnoremap <leader>z :%s/-\n/-/g<cr>
+
+nnoremap <leader>g :Git grep <c-r><c-w><cr>
+
+nnoremap <leader>= gg=G
+
+nnoremap <leader>n :tn<cr><cr><cr>
+
+nnoremap <leader>r :tabedit<cr>
 
 " Vimscript file settings {{{
 augroup filetype_vim
 	autocmd!
-
+;
 	autocmd FileType vim setlocal foldmethod=marker
-	autocmd FileType vim nnoremap <buffer> <leader>c I" <esc>
+	"autocmd FileType vim nnoremap <buffer> <leader>c I" <esc>
 augroup END
 " }}}
 
@@ -109,6 +123,8 @@ augroup filetype_cpp
 
 	" Macros for comments
 	autocmd FileType cpp vnoremap <buffer> <leader>c :s!\(^\s*\)!\1// !<cr>:noh<cr>
-	autocmd FileType cpp nnoremap <buffer> <leader>c I// <esc>
+	"autocmd FileType cpp nnoremap <buffer> <leader>c I// <esc>
 augroup END
 " }}}
+
+let g:sneak#s_next = 1
