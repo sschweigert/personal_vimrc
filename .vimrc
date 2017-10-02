@@ -110,6 +110,10 @@ nnoremap <leader>n :tn<cr><cr><cr>
 
 nnoremap <leader>r :tabedit<cr>
 
+nnoremap <leader>x :cn<cr>
+
+nnoremap <leader>v :tn<cr>
+
 " Vimscript file settings {{{
 augroup filetype_vim
 	autocmd!
