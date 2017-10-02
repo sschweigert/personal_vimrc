@@ -26,7 +26,7 @@ let omnicpp_namespacesearch = 1
 let omnicpp_globalscopesearch = 1      
 let omnicpp_showaccess = 1      
 let omnicpp_maycompletedot = 1      
-let omnicpp_maycompletearrow = 1      
+let omnicpp_maycompletearrow = 2      
 let omnicpp_maycompletescope = 1      
 let omnicpp_defaultnamespaces = ["std", "_glibcxx_std"]     
 
@@ -36,10 +36,12 @@ noremap <f4> :set hlsearch! hlsearch?<cr>
 " set locations of tags file
 set tags=~/.vim/tags
 
-" remap @q to close and compile
-nnoremap <leader>q :wa:make<cr>
+nnoremap <leader>q :wa<cr>:make<cr><cr><cr>
 
+" Settings for bobsweep code compiling
 set makeprg=ca
+
+" Settings for palindrome compiling (TODO: Make switchable via script)
 "set makeprg=./make_script
 
 " needed to initialize pathogen
@@ -47,7 +49,7 @@ execute pathogen#infect()
 execute pathogen#helptags()
 
 " ignores doxygen files when using command-t
-set wildignore=doxygen*,*/build/*
+set wildignore=doxygen*,*/build/*,*deprecated*
 
 noremap <f5> :!gen_tags
 "
@@ -76,10 +78,15 @@ vnoremap <leader>{ c{<cr>}<esc>pkva{=
 nnoremap <leader>{ cc{<cr>}<esc>pkva{=
 
 " Add m member variable prefix on selected word
-nnoremap <leader>m viwv`<vUim<esc>
+" ie. robotSide -> mRobotSide
+"nnoremap <leader>m viwv`<vUim<esc>
+nnoremap <leader>m viwovvUim<esc>
 
 " quick exit out of insert mode
 inoremap jk <esc>
+inoremap jK <esc>
+inoremap Jk <esc>
+inoremap JK <esc>
 
 " Switch the value of these characters since the more useful one is harder
 " to reach
@@ -87,16 +94,28 @@ nnoremap ` '
 nnoremap ' `
 
 " Re-enable <esc> instead of jk when jk must be used
-"nnoremap <leader>k :iunmap <c-v><c-[><cr>:iunmap jk<cr>
+nnoremap <leader>uj :iunmap jk<cr>
 
 nnoremap <leader>; mqA;<c-[>`q
+
+nnoremap <leader>c :clist<cr>
+
+nnoremap <leader>z :%s/-\n/-/g<cr>
+
+"nnoremap <leader>g :Git grep <c-r><c-w><cr>
+
+nnoremap <leader>= gg=G
+
+nnoremap <leader>n :tn<cr><cr><cr>
+
+nnoremap <leader>r :tabedit<cr>
 
 " Vimscript file settings {{{
 augroup filetype_vim
 	autocmd!
 ;
 	autocmd FileType vim setlocal foldmethod=marker
-	autocmd FileType vim nnoremap <buffer> <leader>c I" <esc>
+	"autocmd FileType vim nnoremap <buffer> <leader>c I" <esc>
 augroup END
 " }}}
 
@@ -106,7 +125,7 @@ augroup filetype_cpp
 
 	" Macros for comments
 	autocmd FileType cpp vnoremap <buffer> <leader>c :s!\(^\s*\)!\1// !<cr>:noh<cr>
-	" autocmd FileType cpp nnoremap <buffer> <leader>c I// <esc>
+	"autocmd FileType cpp nnoremap <buffer> <leader>c I// <esc>
 augroup END
 " }}}
 
