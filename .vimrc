@@ -102,17 +102,19 @@ nnoremap <leader>c :clist<cr>
 
 nnoremap <leader>z :%s/-\n/-/g<cr>
 
-"nnoremap <leader>g :Git grep <c-r><c-w><cr>
+nnoremap <leader>g :Git grep <c-r><c-w><cr>
 
 nnoremap <leader>= gg=G
 
-nnoremap <leader>n :tn<cr><cr><cr>
+nnoremap <leader>n :n<cr><cr><cr>
 
 nnoremap <leader>r :tabedit<cr>
 
 nnoremap <leader>x :cn<cr>
 
 nnoremap <leader>v :tn<cr>
+
+nnoremap <leader>f :tag <c-r><c-w><cr>
 
 " Vimscript file settings {{{
 augroup filetype_vim
